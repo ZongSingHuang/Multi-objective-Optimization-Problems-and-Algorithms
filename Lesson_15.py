@@ -66,6 +66,8 @@ for g in range(G):
     # 更新pbest
     mask = F<pbest_F
     pbest_X[mask] = X[mask]
+    pbest_F[mask] = F[mask]
+    
     # 更新gbest
     if F.min()<gbest_F:
         min_idx = np.argmin(F)
