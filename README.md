@@ -13,8 +13,6 @@ https://www.udemy.com/course/multi-objective-optimization-problems-and-algorithm
 
 ------------------------------------------------------------------------------------------------
 
-<初階>
-
 Lesson 3and4:試驗ZTD1和Cantilever這兩個測試函數
 
 Lesson 06:用ZTD1演示什麼是參數空間及目標空間
