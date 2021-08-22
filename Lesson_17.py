@@ -129,17 +129,18 @@ for g in range(G):
             new_X.append(p1)
             new_F.append(list(p1_F.flatten()))
     
-    # 非支配解彼此間的競爭
+    # 刪除重複的染色體
     new_X = np.array(new_X)
     new_F = np.array(new_F)
+    _, uniqueidx = np.unique(new_X, axis=0, return_index=True)
+    new_X = new_X[uniqueidx]
+    new_F = new_F[uniqueidx]
+    
+    # 非支配解彼此間的競爭
     new_P = len(new_X)
     Dominated = np.zeros(new_P)
-    similarPS = np.zeros_like(Dominated)
     
     for k, j in itertools.combinations(range(new_P), 2):
-        if all(new_F[k]==new_F[j]):
-            similarPS[k] = similarPS[k] + 1
-
         if dominates(new_F[k], new_F[j])==True:
             Dominated[j] = 1
         elif dominates(new_F[j], new_F[k])==True:
@@ -147,7 +148,7 @@ for g in range(G):
             
     idx = 0
     for k in range(new_P):
-        if Dominated[k]==0 and similarPS[k]==0:
+        if Dominated[k]==0:
             X[idx] = new_X[k]
             F[idx] = new_F[k]
             idx = idx + 1
